@@ -20,15 +20,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>OpenStack & Distributed Log Querier - BLOG</title>
+  <title>Distributed Log Querier - BLOG</title>
 
   
-    <meta name="description" content="使用openstack搭建环境&amp;使用分布式日志查询器">
+    <meta name="description" content="使用Openstack搭建环境&amp;使用分布式日志查询器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenStack &amp; Distributed Log Querier">
+<meta property="og:title" content="Distributed Log Querier">
 <meta property="og:url" content="https://44maker.github.io/2023/09/30/Openstack/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="使用openstack搭建环境&amp;使用分布式日志查询器">
+<meta property="og:description" content="使用Openstack搭建环境&amp;使用分布式日志查询器">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.ipfsscan.io/ipfs/QmdxGc3WHa5LKtVQCwhyWeXFYnmtbahQmj5zuXpZZVdGiW?filename=image.png">
 <meta property="og:image" content="https://cdn.ipfsscan.io/ipfs/QmRwKcEvBMmVU7EmREHLtJ1SFvMrvFiGSc8GbARi1wBLgj?filename=image.png">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://cdn.ipfsscan.io/ipfs/QmT2bmH1hcFV7LRQrUfpwt7es7a248Thoe9fp7fhKKWqUQ?filename=image.png">
 <meta property="og:image" content="https://cdn.ipfsscan.io/ipfs/QmeP3EifDyjsbST5Mj3m3tyTyGnazTBpKbYgGfaxosQd7W?filename=image.png">
 <meta property="article:published_time" content="2023-09-30T07:42:36.000Z">
-<meta property="article:modified_time" content="2024-01-08T13:06:20.432Z">
+<meta property="article:modified_time" content="2024-01-12T00:55:47.189Z">
 <meta property="article:author" content="44maker">
 <meta property="article:tag" content="运维">
 <meta property="article:tag" content="云计算">
@@ -99,7 +99,7 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">OpenStack & Distributed Log Querier</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-text">前期准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%87%86%E5%A4%87"><span class="toc-text">资源准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE"><span class="toc-text">虚拟机配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">新建虚拟机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E9%85%8D%E7%BD%AE%E7%AC%AC%E4%B8%80%E5%8F%B0%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">初步配置第一台虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">初步配置其他虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEcompute%E8%8A%82%E7%82%B9"><span class="toc-text">配置compute节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%BA%90"><span class="toc-text">配置源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Openstack"><span class="toc-text">安装Openstack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%BB%E8%A6%81%E7%BB%84%E4%BB%B6"><span class="toc-text">安装主要组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Test"><span class="toc-text">Test</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-text">单元测试</span></a></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">Distributed Log Querier</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-text">前期准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%87%86%E5%A4%87"><span class="toc-text">资源准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE"><span class="toc-text">虚拟机配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">新建虚拟机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E9%85%8D%E7%BD%AE%E7%AC%AC%E4%B8%80%E5%8F%B0%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">初步配置第一台虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">初步配置其他虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEcompute%E8%8A%82%E7%82%B9"><span class="toc-text">配置compute节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%BA%90"><span class="toc-text">配置源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Openstack"><span class="toc-text">安装Openstack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%BB%E8%A6%81%E7%BB%84%E4%BB%B6"><span class="toc-text">安装主要组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Test"><span class="toc-text">Test</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-text">单元测试</span></a></li></ol></div></div></widget>
 
 
 
@@ -118,7 +118,7 @@
 <div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">开发笔记</a></div><div id="post-meta">发布于&nbsp;<time datetime="2023-09-30T07:42:36.000Z">2023-09-30</time></div></div>
 
 <article class='md-text content post'>
-<h1 class="article-title"><span>OpenStack & Distributed Log Querier</span></h1>
+<h1 class="article-title"><span>Distributed Log Querier</span></h1>
 <p>制作一个Mini Project，使用openstack搭建1个控制节点，4个计算节点，然后使用分布式日志查询器查询日志 </p>
 <span id="more"></span>
 <h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><table>
